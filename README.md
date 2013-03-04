@@ -10,7 +10,9 @@ This script is intended to be used as a long running daemon on a server.
 1. Open the ServerAnalysis.m file and change resultsFile and imageDir to a file and directory of your choice. The imageDir is the folder where Matlab will periodically scan for new files, while the resultsFile is where the analysis results will go.
 
 2. Start the daemon by running (for example):
+
 	hup matlab -r ServerAnalysis -nojvm -nodisplay -logfile logs/mat.log > /dev/null &
+
 We start Matlab with no display and no Java virtual machine to reduce memory usage. All output will be logged in logs/mat.log while console output will be piped to /dev/null (i.e. ignored).
 
 3. After analysis has finished, the script moves any processed images into a "processed/" directory in the same folder as the script. Check your resultsFile for the results. A '1' next to the file name means there was no melanoma detected. A '2' means possible melanoma, a '3' means basal cell carcinoma, and a '4' means the results were ambiguous. 
